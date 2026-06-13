@@ -229,7 +229,8 @@ function getCurrentDateTime() {
 }
 
 function formatRp(a){ return 'Rp '+Math.round(a).toLocaleString('id-ID'); }
-function getURL(){ return localStorage.getItem('gsURL')||''; }
+const DEFAULT_URL = 'https://script.google.com/macros/s/AKfycbzWZKD0QqU4tU0ZnGlZKLPEJ39uuCGFCzPo7QSKaKHI_Fl66PI2Mo7GNL6eNuh_-wqYag/exec';
+function getURL(){ return localStorage.getItem('gsURL')||DEFAULT_URL; }
 function getLocalTransaksi(){ try{ return JSON.parse(localStorage.getItem('crdata')||'[]'); }catch{ return[]; } }
 function getLocalUpah(){ try{ return JSON.parse(localStorage.getItem('upahData')||'[]'); }catch{ return[]; } }
 
@@ -708,8 +709,15 @@ if(!getLocalUpah().length){
   const today=getCurrentDateTime().tanggal;
   localStorage.setItem('upahData',JSON.stringify([{id:1,nama:'Budi',jumlah:150000,tanggal:today,ket:'Contoh upah - angkut 3 truk'}]));
 }
+// Pre-fill URL field jika belum ada
+if(!localStorage.getItem('gsURL')) localStorage.setItem('gsURL', DEFAULT_URL);
+const urlField = document.getElementById('gsheetUrl');
+if(urlField) urlField.value = getURL();
+updateStatus();
 renderUpahBaru();
 renderRekap();
+// Auto-load dari cloud saat buka app
+loadCloud();
 </script>
 </body>
 </html>
