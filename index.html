@@ -229,7 +229,7 @@ function getCurrentDateTime() {
 }
 
 function formatRp(a){ return 'Rp '+Math.round(a).toLocaleString('id-ID'); }
-const DEFAULT_URL = 'https://script.google.com/macros/s/AKfycbzWZKD0QqU4tU0ZnGlZKLPEJ39uuCGFCzPo7QSKaKHI_Fl66PI2Mo7GNL6eNuh_-wqYag/exec';
+const DEFAULT_URL = 'https://script.google.com/macros/s/AKfycbzyv9NgZnV0OyOHad9aySBp5j7CbnwzGNK0VuOqF6IstKWYe-MnOx2oQ7BVk1LOqK2_yw/exec';
 function getURL(){ return localStorage.getItem('gsURL')||DEFAULT_URL; }
 function getLocalTransaksi(){ try{ return JSON.parse(localStorage.getItem('crdata')||'[]'); }catch{ return[]; } }
 function getLocalUpah(){ try{ return JSON.parse(localStorage.getItem('upahData')||'[]'); }catch{ return[]; } }
